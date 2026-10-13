@@ -12,20 +12,24 @@ export type Entry = {
   mark: Mark;
 };
 
+export type TextRun = {
+  text: string;
+  strong?: boolean;
+};
+
 export type Project = {
   name: string;
-  summary: string;
-  year: string;
+  href: string;
+  icon: string;
+  points: TextRun[][];
   tags: string[];
-  mark: Mark;
 };
 
 export type Post = {
-  slug: string;
   title: string;
   date: string;
-  excerpt: string;
-  paragraphs: string[];
+  href: string;
+  image: string;
 };
 
 export type Achievement = {
@@ -119,7 +123,7 @@ export const connect = {
       href: "mailto:alex.morgan@example.com",
     },
     { label: "linkedin", href: "https://example.com" },
-    { label: "github", href: "https://example.com" },
+    { label: "github", href: "https://github.com/Ciggzy1312" },
     { label: "leetcode", href: "https://example.com" },
   ] satisfies ContactLink[],
 };
@@ -139,72 +143,270 @@ export const openSource: Entry[] = [
   },
 ];
 
+function text(value: string): TextRun {
+  return { text: value };
+}
+
+function strong(value: string): TextRun {
+  return { text: value, strong: true };
+}
+
 export const projects: Project[] = [
   {
-    name: "Ledger",
-    summary:
-      "A small personal finance tracker with a plain CSV import and a monthly summary view.",
-    year: "2025",
-    tags: ["TypeScript", "Next.js"],
-    mark: { label: "L", background: "#1d4ed8" },
+    name: "Northstar: Shared Incident Notebook",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/northstar.svg",
+    tags: ["TypeScript", "Next.js", "Postgres"],
+    points: [
+      [
+        text("Kept a shared timeline of updates during an incident, then turned that timeline into a "),
+        strong("short postmortem draft"),
+        text("."),
+      ],
+      [
+        text("Stored each note with its author and timestamp so the "),
+        strong("order of events"),
+        text(" stayed readable after the call ended."),
+      ],
+      [
+        text("Added a quiet review step so a draft is not published until someone marks it "),
+        strong("ready"),
+        text("."),
+      ],
+    ],
   },
   {
-    name: "Relay",
-    summary:
-      "A status page that polls a handful of health endpoints and notes when something stays down.",
-    year: "2024",
-    tags: ["Go", "Postgres"],
-    mark: { label: "R", background: "#0f766e" },
+    name: "Driftwood: Config Diff Watcher",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/driftwood.svg",
+    tags: ["Go", "Git"],
+    points: [
+      [
+        text("Watched a repository of service config and wrote a "),
+        strong("plain summary"),
+        text(" when a value differed between two environments."),
+      ],
+      [
+        text("Ignored whitespace and key order so the report only mentioned "),
+        strong("real changes"),
+        text("."),
+      ],
+      [
+        text("Left the decision to ship with the operator. The tool only "),
+        strong("shows the diff"),
+        text("."),
+      ],
+    ],
   },
   {
-    name: "Field notes",
-    summary:
-      "A markdown reading list with tags, search, and a quiet page for long articles.",
-    year: "2024",
+    name: "Parcel: Signed Upload Inbox",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/parcel.svg",
+    tags: ["Go", "Postgres", "Object storage"],
+    points: [
+      [
+        text("Issued "),
+        strong("short-lived upload URLs"),
+        text(" so clients could send files without holding long-term storage credentials."),
+      ],
+      [
+        text("Marked a file ready only after a "),
+        strong("scan hook"),
+        text(" returned a clean result."),
+      ],
+      [
+        text("Kept the original filename separate from the storage key, so a later rename did not "),
+        strong("break the link"),
+        text("."),
+      ],
+    ],
+  },
+  {
+    name: "Keel: SQL Migration Runner",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/keel.svg",
+    tags: ["Go", "Postgres", "CLI"],
+    points: [
+      [
+        text("Applied SQL files in filename order and recorded each one in a "),
+        strong("migrations table"),
+        text("."),
+      ],
+      [
+        text("Stopped on the first failure and printed the "),
+        strong("file name and error"),
+        text(", leaving later files untouched."),
+      ],
+      [
+        text("Refused to run a file whose contents had changed after it was already "),
+        strong("recorded"),
+        text("."),
+      ],
+    ],
+  },
+  {
+    name: "Lantern: Small Status Board",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/lantern.svg",
+    tags: ["Go", "SQLite"],
+    points: [
+      [
+        text("Polled a short list of health endpoints and kept the latest "),
+        strong("up or down"),
+        text(" state for each one."),
+      ],
+      [
+        text("Required several failed checks in a row before marking a service "),
+        strong("down"),
+        text(", so one slow response did not page anyone."),
+      ],
+      [
+        text("Rendered a single public page with the "),
+        strong("last change"),
+        text(" and nothing else."),
+      ],
+    ],
+  },
+  {
+    name: "Quarry: Notes Search",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/quarry.svg",
     tags: ["TypeScript", "SQLite"],
-    mark: { label: "F", background: "#404040" },
+    points: [
+      [
+        text("Indexed a folder of markdown notes and answered queries with the "),
+        strong("matching heading"),
+        text(" and a short snippet."),
+      ],
+      [
+        text("Rebuilt only the files that changed, using the file hash as the "),
+        strong("index key"),
+        text("."),
+      ],
+      [
+        text("Kept the index on disk so a restart did not require a "),
+        strong("full rescan"),
+        text("."),
+      ],
+    ],
+  },
+  {
+    name: "Switchback: Request Replay",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/switchback.svg",
+    tags: ["Go", "HTTP"],
+    points: [
+      [
+        text("Recorded HTTP requests in a local dev proxy and let you "),
+        strong("replay one"),
+        text(" against a new build."),
+      ],
+      [
+        text("Stripped hop-by-hop headers and showed the "),
+        strong("status and body diff"),
+        text(" next to the original response."),
+      ],
+      [
+        text("Stored recordings as plain files so they could sit in a "),
+        strong("fixture folder"),
+        text("."),
+      ],
+    ],
+  },
+  {
+    name: "Cinder: CI Artifact Index",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/cinder.svg",
+    tags: ["TypeScript", "Redis"],
+    points: [
+      [
+        text("Hashed each package's inputs and skipped a rebuild when the "),
+        strong("same hash"),
+        text(" was already stored."),
+      ],
+      [
+        text("Recorded the commit and the artifact location beside the hash, so a later job could "),
+        strong("fetch instead of rebuild"),
+        text("."),
+      ],
+      [
+        text("Expired unused entries after "),
+        strong("14 days"),
+        text(" so the index did not grow without a bound."),
+      ],
+    ],
+  },
+  {
+    name: "Marlow: Reading Queue",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/marlow.svg",
+    tags: ["Next.js", "Postgres"],
+    points: [
+      [
+        text("Saved articles into a queue with tags, and showed the "),
+        strong("oldest unread"),
+        text(" item first."),
+      ],
+      [
+        text("Sent a "),
+        strong("weekly digest"),
+        text(" of what was still waiting, and skipped the mail when the queue was empty."),
+      ],
+      [
+        text("Stored the original URL and a local title so a later site change did not "),
+        strong("erase the entry"),
+        text("."),
+      ],
+    ],
+  },
+  {
+    name: "Silt: Debug Log Sampler",
+    href: "https://github.com/Ciggzy1312",
+    icon: "/projects/silt.svg",
+    tags: ["Go", "Logging"],
+    points: [
+      [
+        text("Kept "),
+        strong("1 of every 20"),
+        text(" debug lines, and kept the surrounding lines when an error appeared."),
+      ],
+      [
+        text("Counted dropped lines and printed that count on the next "),
+        strong("kept line"),
+        text(", so the gap stayed visible."),
+      ],
+      [
+        text("Left error and warning lines "),
+        strong("unsampled"),
+        text("."),
+      ],
+    ],
   },
 ];
 
 export const posts: Post[] = [
   {
-    slug: "readiness-checks",
-    title: "Notes on readiness checks",
-    date: "Aug 2025",
-    excerpt:
-      "A service can answer a health check and still be a bad place to send traffic.",
-    paragraphs: [
-      "A process can be alive and still not ready. The useful check is the one that fails until the dependency it actually needs has answered a few times in a row.",
-      "I keep the sampler small. One interval, one success threshold, and a log line when the state flips. Operators can read that without opening a dashboard.",
-      "The rest of the deploy stays the same. The flag only changes how long the process waits before it accepts work.",
-    ],
+    title: "Bloom Filters",
+    date: "Jan 15, 2023",
+    href: "https://ciggzy.hashnode.dev/bloom-filters",
+    image: "/posts/bloom.jpeg",
   },
   {
-    slug: "quieter-deploys",
-    title: "A quieter deploy",
-    date: "Mar 2025",
-    excerpt:
-      "Most of the noise in a release is the checklist people repeat from memory.",
-    paragraphs: [
-      "The deploy got quieter when the checklist moved into the script. The same steps still run. They just stop depending on who is awake.",
-      "What stayed manual is the decision to ship. The script does not get to make that call.",
-      "After a few weeks the channel had fewer 'did we run the migration' messages, which was the whole point.",
-    ],
+    title: "Exploring the Fundamentals of Load Balancers",
+    date: "Jun 10, 2023",
+    href: "https://ciggzy.hashnode.dev/exploring-the-fundamentals-of-load-balancers",
+    image: "/posts/load.jpeg",
   },
   {
-    slug: "service-readme",
-    title: "What I keep in a service README",
-    date: "Nov 2024",
-    excerpt:
-      "Enough for the next person to run it, and no tour of the architecture.",
-    paragraphs: [
-      "The first screen should say how to start the service, which env vars it needs, and where the logs go. Anything else can wait.",
-      "I link the dashboard and the on-call note, then stop. A long README is where details go to get stale.",
-      "When the runbook changes, the README changes in the same pull request. That is the only way it stays true.",
-    ],
+    title: "Introduction to Kubernetes for absolute beginners",
+    date: "Aug 11, 2022",
+    href: "https://ciggzy.hashnode.dev/introduction-to-kubernetes-for-absolute-beginners",
+    image: "/posts/k8s.jpg",
+  },
+  {
+    title: "Debouncing and Throttling",
+    date: "Jun 3, 2022",
+    href: "https://ciggzy.hashnode.dev/debouncing-and-throttling",
+    image: "/posts/debounce.jpg",
   },
 ];
-
-export function getPost(slug: string) {
-  return posts.find((post) => post.slug === slug);
-}

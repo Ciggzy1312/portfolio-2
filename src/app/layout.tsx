@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white font-sans text-neutral-950">
+      <body className="min-h-full bg-[#fbfafb] font-sans text-neutral-950">
         <div className="mx-auto w-full max-w-[640px] px-5 pt-10 pb-20 sm:pt-12">
           <SiteNav />
           <main>{children}</main>
