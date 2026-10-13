@@ -3,7 +3,7 @@ export function Avatar() {
     <svg
       viewBox="0 0 64 64"
       aria-hidden
-      className="size-9 shrink-0 rounded-full"
+      className="size-11 shrink-0 rounded-full"
     >
       <circle cx="32" cy="32" r="32" fill="#e7cbb8" />
       <circle cx="32" cy="26" r="11" fill="#3f2a22" />

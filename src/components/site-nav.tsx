@@ -13,7 +13,7 @@ export function SiteNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center justify-center gap-4 text-[13px] text-neutral-900">
+    <nav className="flex items-center justify-start gap-5 text-[15px] text-neutral-900">
       {links.map((link) => {
         const active =
           link.href === "/"

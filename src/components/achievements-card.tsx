@@ -32,9 +32,9 @@ export function AchievementsCard({
     <article className="rounded-lg border border-neutral-200 bg-white px-4 py-3.5">
       <div className="flex items-center gap-2">
         <MedalIcon />
-        <p className="text-[14px] font-semibold text-neutral-950">{title}</p>
+        <p className="text-[15px] font-semibold text-neutral-950">{title}</p>
       </div>
-      <ul className="mt-2.5 list-disc space-y-1.5 pl-5 text-[13px] leading-5 text-neutral-700 marker:text-neutral-800">
+      <ul className="mt-2.5 list-disc space-y-1.5 pl-5 text-[15px] leading-6 text-neutral-800 marker:text-neutral-800">
         {items.map((item) => (
           <li key={item.label} className="pl-1">
             <span className="font-semibold text-neutral-950">{item.label}</span>{" "}

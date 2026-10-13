@@ -20,19 +20,19 @@ export default function ProjectsPage() {
             <div className="flex gap-3">
               <Mark mark={project.mark} />
               <div className="min-w-0 pt-0.5">
-                <p className="text-[13.5px] leading-5 text-neutral-950">
+                <p className="text-[15px] leading-6 text-neutral-950">
                   <span className="font-semibold">{project.name}</span>
                   <span className="text-neutral-400"> • </span>
-                  <span className="text-neutral-500">{project.year}</span>
+                  <span className="text-[13px] text-neutral-500">{project.year}</span>
                 </p>
-                <p className="mt-1.5 text-[13px] leading-5 text-neutral-700">
+                <p className="mt-1.5 text-[15px] leading-6 text-neutral-800">
                   {project.summary}
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {project.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-md border border-neutral-200 px-2 py-0.5 text-[11px] leading-4 text-neutral-600"
+                      className="rounded-md border border-neutral-200 px-2 py-0.5 text-xs leading-5 text-neutral-600"
                     >
                       {tag}
                     </li>

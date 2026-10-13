@@ -32,16 +32,16 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="mt-8">
-      <p className="text-[13px] text-neutral-800">
+      <p className="text-[15px] text-neutral-800">
         <Link href="/posts" className="hover:text-neutral-950">
           Posts
         </Link>
       </p>
-      <h1 className="mt-4 text-[15px] font-semibold tracking-tight text-neutral-950">
+      <h1 className="mt-4 text-xl font-bold tracking-tight text-neutral-950">
         {post.title}
       </h1>
-      <p className="mt-1 text-[12px] text-neutral-500">{post.date}</p>
-      <div className="mt-4 space-y-3 text-[13.5px] leading-6 text-neutral-700">
+      <p className="mt-1 text-[13px] text-neutral-500">{post.date}</p>
+      <div className="mt-4 space-y-3 text-[15px] leading-7 text-neutral-800">
         {post.paragraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}

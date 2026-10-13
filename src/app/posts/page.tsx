@@ -21,13 +21,13 @@ export default function PostsPage() {
               href={`/posts/${post.slug}`}
               className="block px-4 py-3.5 hover:bg-neutral-50"
             >
-              <p className="text-[13.5px] font-semibold leading-5 text-neutral-950">
+              <p className="text-[15px] font-semibold leading-6 text-neutral-950">
                 {post.title}
               </p>
-              <p className="mt-0.5 text-[12px] leading-4 text-neutral-500">
+              <p className="text-[13px] leading-5 text-neutral-500">
                 {post.date}
               </p>
-              <p className="mt-1.5 text-[13px] leading-5 text-neutral-700">
+              <p className="mt-1.5 text-[15px] leading-6 text-neutral-800">
                 {post.excerpt}
               </p>
             </Link>
